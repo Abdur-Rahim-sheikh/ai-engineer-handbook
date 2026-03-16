@@ -23,6 +23,7 @@
 19. [Rate Limiting](#rate-limiting)
 20. [REST API versioning](#rest-api-versioning)
 21. [Django Request/Response Cycle](#django-request-response-cycle)
+22. [Https vs server-sent events vs websocket](#htps-vs-server-sent-events-vs-websocket)
 
 ### What are literals in Python?
 
@@ -263,7 +264,6 @@ WHERE details->>'category' = 'electronics';
 ### Django vs Fastapi
 
 - **Features** of Django
-
   - It provides a good sense of security by avoiding common threats like cross-site scripting, SQL injection, etc.
   - It provides a user authentication system that helps in managing accounts and passwords
   - Django projects are very suitable for large scale projects
@@ -354,3 +354,17 @@ WSGI --> w
 w --> c
 
 ```
+
+### Https vs server-sent events vs websocket
+
+- HTTPS: This is the "stateless" model where the client asks for something, and the server gives it back.
+- SSE: Server sent event allows a server to push data to a web page over HTTP. It is a "streamimg" version of standard HTTP.
+  - If the connection drops, the browser automatically tries to reconnect
+- WS: Websockets provide a persistent, full-duplex connection between the client and server.
+
+comparisons at a glance,
+| Features | HTTPS | Server sent events | Websockets|
+|---|---|---|---|
+|Direction | Unidirectional (Client -> server)| Unidirectional (Server -> Client) | Bidirectional full duplex|
+|Connection | Short-lived | Long Lived | Long lived|
+| overhead | high | Low | lowest|
