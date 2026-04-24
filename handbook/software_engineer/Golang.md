@@ -8,6 +8,7 @@
 
 1. [Internal Memory](#internal-memory)
 2. [Closure](#closure)
+3. [Receiver](#receiver)
 
 #### Internal Memory
 
@@ -70,3 +71,35 @@ in Stack:
   - gets another inner
   - executes that another inner again
   - exits main
+
+### Receiver
+
+In Go, receiver is what turns a normal function into a method `attached` to a type.
+in below code `Citizen` and `isChild` are receriver.
+
+There are two types of receiver:
+
+1. Value Receiver
+   - works on a copy
+   - original struct does not change
+   - `Citizen` is the example
+2. Pointer receiver
+   - works on the original value
+   - Can modify struct fields
+
+```go
+type User struct{
+    name string
+    age int
+}
+// we can use any variable instead of `this` but its usually named as `this`
+func (this User) Citizen(){
+    return this.name>17
+}
+
+func (this *User) isChild(){
+    return this.age<5
+}
+```
+
+**Note**: If any method on a type uses a pointer receiver, it's common practice to use pointer receivers for all methods of that type.
