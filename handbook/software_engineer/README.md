@@ -24,6 +24,7 @@
 20. [REST API versioning](#rest-api-versioning)
 21. [Django Request/Response Cycle](#django-requestresponse-cycle)
 22. [Https vs server-sent events vs websocket](#https-vs-server-sent-events-vs-websocket)
+23. [Auth vs Session vs JWT vs Refresh token](#auth-vs-session-vs-jwt-vs-refresh-token)
 
 ### What are literals in Python?
 
@@ -368,3 +369,24 @@ comparisons at a glance,
 |Direction | Unidirectional (Client -> server)| Unidirectional (Server -> Client) | Bidirectional full duplex|
 |Connection | Short-lived | Long Lived | Long lived|
 | overhead | high | Low | lowest|
+
+### Auth vs Session vs JWT vs Refresh token
+
+First of all they are not directly opposite or alternative of each other.
+
+**Auth Token**: is a general umbrella term for any credential used to authorize a request
+
+Next we either use `session` or `jwt + refresh token` they are the real point of comparison
+
+| Term          | Definition                                                                          | State     | Key Fact                                                                      |
+| ------------- | ----------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------- |
+| Session Token | A random string (ID) that points to a record in the server's database.              | Stateful  | "The server must ""remember"" the user in its database/RAM."                  |
+| JWT           | A self-contained JSON object signed by the server containing user info.             | Stateless | The server doesn't store it; it verifies it using a mathematical signature.   |
+| Refresh Token | A long-lived token used specifically to generate new Access Tokens( generally JWT). | Stateful  | Prevents users from having to log in every 15 minutes when their JWT expires. |
+
+- Session vs JWT
+  - **Revocation**: Session are easy to revoke, just delete from db. JWT are stateless so cannot revoke need to wait for expire
+  - **Scalability**: JWTs are better for microservices and massice scaling because they don't require a database to lookup for every single request.
+- Why use Refresh token?
+  - **Security balance**: It allows us to make short lived access token. Refresh token is in more secure place in memory and used once a while keeping user experice cool.
+    for detailed explanation [click](types_of_auth_tokens.md)
