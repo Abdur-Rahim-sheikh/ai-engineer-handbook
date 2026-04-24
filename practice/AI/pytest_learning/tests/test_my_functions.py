@@ -1,6 +1,6 @@
 import pytest
 import time
-import pytest_learning.source.my_functions as my_functions
+import practice.pytest_learning.source.my_functions as my_functions
 
 
 @pytest.mark.parametrize(

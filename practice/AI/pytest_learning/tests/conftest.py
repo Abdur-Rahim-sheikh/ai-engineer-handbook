@@ -1,6 +1,6 @@
 import pytest
 
-from pytest_learning.source import Rectangle
+from practice.pytest_learning.source import Rectangle
 
 
 @pytest.fixture

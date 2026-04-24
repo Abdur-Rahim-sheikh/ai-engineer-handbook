@@ -1,5 +1,5 @@
 import pytest
-from pytest_learning.source import Square
+from practice.pytest_learning.source import Square
 
 
 @pytest.mark.parametrize("side, expected_area", [(5, 25), (0, 0), (4, 16), (1, 1)])

@@ -1,4 +1,4 @@
-from pytest_learning.source import Circle
+from practice.pytest_learning.source import Circle
 import math
 
 import logging
@@ -7,7 +7,6 @@ logger = logging.getLogger(__name__)
 
 
 class TestCircle:
-
     def setup_method(self, method):
         self.circle = Circle(10)
         logger.info(f"setting up {method}")

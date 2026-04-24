@@ -1,5 +1,5 @@
 import pytest
-from pytest_learning.source import (
+from practice.pytest_learning.source import (
     TooManyStudents,
     Classroom,
     Teacher,

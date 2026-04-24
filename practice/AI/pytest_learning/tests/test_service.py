@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-import pytest_learning.source.service as service
+import practice.pytest_learning.source.service as service
 
 from unittest import mock
 
