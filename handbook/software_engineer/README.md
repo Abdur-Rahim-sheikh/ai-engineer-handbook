@@ -22,8 +22,8 @@
 18. [HTTP vs gRPC vs Message Queue Broker](#http-vs-grpc-vs-message-queue-broker)
 19. [Rate Limiting](#rate-limiting)
 20. [REST API versioning](#rest-api-versioning)
-21. [Django Request/Response Cycle](#django-request-response-cycle)
-22. [Https vs server-sent events vs websocket](#htps-vs-server-sent-events-vs-websocket)
+21. [Django Request/Response Cycle](#django-requestresponse-cycle)
+22. [Https vs server-sent events vs websocket](#https-vs-server-sent-events-vs-websocket)
 
 ### What are literals in Python?
 
