@@ -159,7 +159,7 @@ It copies the whole thing to a new place with increased size.
 
 How the capacity increases.
 
-- Before `Go 1.18` version, It doubles till threshold, after that it increases by `25%` to not waste much.
-- From `Go 1.18` version, It doubles till threshold, after that it increases by `cap+=(cap + 3 * threshold)/4` to not waste much.
+- Before `Go 1.18` version, It doubles till `threshold=1024`, after that it increases by `25%` to not waste much.
+- From `Go 1.18` version, It doubles till `threshold=256`, after that it increases by `cap+=(cap + 3 * threshold)/4` to not waste much.
 
 But for both case, the `equation` complies with go's prefix alignment size.
