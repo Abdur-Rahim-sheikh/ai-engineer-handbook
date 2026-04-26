@@ -2,15 +2,15 @@ package main
 
 import "fmt"
 func changeSlice(a []int) []int{
-	a[0] = 10
 	a = append(a,11)
+	a[0] = 10
 	return a
 }
 func main(){
-	x:=[]int{1,2,3,4,5}
+	x:=[]int{1,2,3}
 	x = append(x,6)
 	x = append(x,7)
-	a := x[4:]
+	a := x[2:]
 
 	y := changeSlice(a)
 
