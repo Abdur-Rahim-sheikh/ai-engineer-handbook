@@ -141,7 +141,10 @@ stops here, it copies the whole original array to a new place with bigger capaci
 
 So we try to allocate the first capacity as such, it need to to exceed at any time.
 
-**Note** If slice is coded to `escape` the function, the array is declared in `heap` at the beginning not stack.
+**Note**:
+
+- If slice is coded to `escape` the function, the array is declared in `heap` at the beginning not stack.
+- To escape it can be returned from function or any append operation also makes it `escapable` so if any changes done to the original array in the whole code, utilizing the analysis it allocate in heap from the start.
 
 ### Slice Capacity
 
@@ -155,5 +158,8 @@ If we keep appending and it tries to exceed the capacity.
 It copies the whole thing to a new place with increased size.
 
 How the capacity increases.
-It doubles till threshold, after that it increases by 25% to not waste much.
-Before `Go 1.18` the threshold was `1024` and currently it's `256`
+
+- Before `Go 1.18` version, It doubles till threshold, after that it increases by `25%` to not waste much.
+- From `Go 1.18` version, It doubles till threshold, after that it increases by `cap+=(cap + 3 * threshold)/4` to not waste much.
+
+But for both case, the `equation` complies with go's prefix alignment size.
