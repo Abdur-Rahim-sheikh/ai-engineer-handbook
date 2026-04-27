@@ -11,6 +11,7 @@
 3. [Receiver](#receiver)
 4. [Slice and Slice in Slice](#slice-and-slice-in-slice)
 5. [Slice Capacity](#slice-capacity)
+6. [Variadic Function](#variadic-function)
 
 #### Internal Memory
 
@@ -163,3 +164,18 @@ How the capacity increases.
 - From `Go 1.18` version, It doubles till `threshold=256`, after that it increases by `cap+=(cap + 3 * threshold)/4` to not waste much.
 
 But for both case, the `equation` complies with go's prefix alignment size.
+
+### Variadic Function
+
+If a function takes variable amount of params of same type is as a slice is called a variadic function.
+
+```go
+func money(taka ...int){
+  fmt.Println(taka, len(taka), cap(taka)) //here len and cap will be equal
+}
+
+func main(){
+  money(2,3,4,3,5,3,3,4,5)
+}
+
+```
