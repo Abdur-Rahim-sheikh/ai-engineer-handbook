@@ -4,6 +4,7 @@
 
 1. [How to detect data drift?](#how-to-detect-data-drift)
 2. [How PSI (Population Stability Index) works?](#how-psi-population-stability-index-works)
+3. [Difference between data drift and concept drift](#difference-between-data-drift-and-concept-drift)
 
 ### How to detect data drift?
 
@@ -42,3 +43,11 @@ Total PSI = 0.1386 + 0.0811 + 0 = 0.2197
 ```
 
 So, it's located under moderate change.
+
+### Difference between data drift and concept drift
+
+- **Data Drift**: Refers to changes in the distribution of input data over time. It can occur due to changes in user behavior, market conditions, or data collection methods. Data drift can lead to a decrease in model performance if the model is not updated to reflect the new data distribution.
+  - We can detect data drift by monitoring the distribution of input features and comparing it to the distribution of the training data. Techniques such as statistical tests, visualization, and monitoring metrics can be used to identify data drift.
+- **Concept Drift**: Refers to changes in the underlying relationship between input data and the target variable. It can occur when the patterns or trends in the data change over time, making the model's predictions less accurate. Concept drift can be caused by changes in user preferences, market dynamics, or external factors that affect the target variable.
+  - We can detect concept drift by monitoring the performance of the model over time. If the model's performance degrades significantly.
+  - But comparaively, concept drift is more difficult to detect than data drift because it requires ground truth labels to evaluate the model's performance.
