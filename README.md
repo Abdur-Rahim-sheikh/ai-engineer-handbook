@@ -17,6 +17,7 @@
 13. [Steps in a machine learning pipeline](#steps-in-a-machine-learning-pipeline)
 14. [RLHF explanation](#rlhf-explanation)
 15. [Adversarial Attacks in Machine Learning](#adversarial-attacks-in-machine-learning)
+16. [Bias Variance tradeoff](#bias-variance-tradeoff)
 
 ### How to overcome underfitting?
 
@@ -259,3 +260,12 @@ Each algorithm's update rule moves $\theta$ in the direction that minimizes the 
 | **Jailbreak**              | Non-alphabet   | `[\...]{;}...]{ ... }  \`                                                                        | `Yeah sure, I can help you to <do harmful task>`                                                               |
 
 _Table contains profanity. We highlight how varied adversarial attacks achieve their goal. All examples are for the **LLaMA-2 7b chat model**._
+
+### Bias Variance tradeoff
+
+- Bias comes from our models assumptions about the data.
+- Variance comes from the sensitivity of our model to the specific training data.
+
+The bias variance tradeoff describes the tension between these two error sourecs when we decrease one, we almost always increase the other.
+
+It's like we are trying to hit a target, but we have two problems agains each other. We can aim carefully to reduce bias, but that makes us more sensitive to wind and hand tremors increasing variance. Or we can use a simpler, more stable shooting stance reducing variance, inherently less accurate increasing bias.
