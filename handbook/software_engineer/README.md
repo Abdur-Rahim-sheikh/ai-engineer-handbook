@@ -25,6 +25,7 @@
 21. [Django Request/Response Cycle](#django-requestresponse-cycle)
 22. [Https vs server-sent events vs websocket](#https-vs-server-sent-events-vs-websocket)
 23. [Auth vs Session vs JWT vs Refresh token](#auth-vs-session-vs-jwt-vs-refresh-token)
+24. [Program vs Process](#program-vs-process)
 
 ### What are literals in Python?
 
@@ -390,3 +391,8 @@ Next we either use `session` or `jwt + refresh token` they are the real point of
 - Why use Refresh token?
   - **Security balance**: It allows us to make short lived access token. Refresh token is in more secure place in memory and used once a while keeping user experice cool.
     for detailed explanation [click](types_of_auth_tokens.md)
+
+### Program vs Process
+
+- A program is a set of instructions that can be executed by a computer. It is a static entity that exists on disk and is not currently running.
+- A process is an instance of a program that is currently running. It is a dynamic entity. It includes, executing code and everything else that is needed to run the program, such as memory (code segment, data segment, stack, heap), file handling, and network connections. A process can have multiple threads of execution, which are separate paths of execution within the same process. Each thread shares the same memory space and resources of the process, but can execute independently.
