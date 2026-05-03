@@ -395,4 +395,8 @@ Next we either use `session` or `jwt + refresh token` they are the real point of
 ### Program vs Process
 
 - A program is a set of instructions that can be executed by a computer. It is a static entity that exists on disk and is not currently running.
-- A process is an instance of a program that is currently running. It is a dynamic entity. It includes, executing code and everything else that is needed to run the program, such as memory (code segment, data segment, stack, heap), file handling, and network connections. A process can have multiple threads of execution, which are separate paths of execution within the same process. Each thread shares the same memory space and resources of the process, but can execute independently.
+- A process is an instance of a program that is currently running. It is a dynamic entity. It includes, executing code and everything else that is needed to run the program, such as
+  - memory (code segment, data segment, stack, heap),
+  - file handling, and network connections.
+  - A PCB (Process Control Block) to keep track of the process's state, resources, and other information.
+  - A process can have multiple threads of execution, which are separate paths of execution within the same process. Each thread shares the same memory space and resources of the process, but can execute independently.
