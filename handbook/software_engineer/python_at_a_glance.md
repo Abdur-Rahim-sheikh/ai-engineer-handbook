@@ -46,3 +46,5 @@ def init_db():
     yield db_connection
     # Code to clean up the database connection
 ```
+
+And yes, there are some built-in fixtures in pytest, such as `tmpdir`, `tmp_path`, `capfd`, `caplog`, etc., which provide common functionality for testing. You can also create your own custom fixtures to suit your specific testing needs.
