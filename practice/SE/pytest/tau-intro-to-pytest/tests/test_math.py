@@ -7,12 +7,14 @@ def test_one_plus_one():
 
 
 # raises
+@pytest.mark.math
 def test_division_by_zero():
     with pytest.raises(ZeroDivisionError):
         1 / 0
 
 
 # parametrize
+@pytest.mark.math
 @pytest.mark.parametrize(
     "a, b, expected",
     [
@@ -23,7 +25,7 @@ def test_division_by_zero():
         (-1, 2, -2),
         (-2, -3, 6),
         # intentionally incorrect test case to demonstrate failure
-        (2, 2, 5),
+        # (2, 2, 5),
     ],
 )
 def test_multiply(a, b, expected):
