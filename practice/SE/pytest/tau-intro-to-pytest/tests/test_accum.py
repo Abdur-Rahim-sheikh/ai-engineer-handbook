@@ -1,6 +1,7 @@
 import pytest
 
 
+@pytest.mark.accumulator
 def test_accumulator_init(accum):
     assert accum.count == 0
 
