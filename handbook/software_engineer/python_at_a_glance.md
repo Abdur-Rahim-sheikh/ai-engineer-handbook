@@ -3,6 +3,7 @@
 1. [Some important python command](#some-important-python-command)
 2. [Some interesting python behaviour](#some-interesting-python-behaviour)
 3. [What is pytest fixture scope?](#what-is-pytest-fixture-scope)
+4. [Some common alembic commands](#some-common-alembic-commands)
 
 ### Some important python command
 
@@ -48,3 +49,16 @@ def init_db():
 ```
 
 And yes, there are some built-in fixtures in pytest, such as `tmpdir`, `tmp_path`, `capfd`, `caplog`, etc., which provide common functionality for testing. You can also create your own custom fixtures to suit your specific testing needs.
+
+### Some common alembic commands
+
+**Generate new migration**: - `alembic revision --autogenerate -m "message"` - This scans our models, compares them to the database, and writes a new python script in `versions`
+**Apply migrations to the database**: - `alembic upgrade head` - This runs all pending scripts to bring my dabase schema to the latest version
+
+**Undo the last migration** - `alembic downgrade -1` - Useful when we want to revert back by `n` version here `n=1`
+
+**More**
+
+- `alembic current` -> Current database version
+- `alembic history --verbose` -> listing all migration scripts
+- `alembic check` a quick way to see if the models and database are of of sync
