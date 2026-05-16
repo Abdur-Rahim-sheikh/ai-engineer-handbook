@@ -4,6 +4,7 @@
 2. [Some interesting python behaviour](#some-interesting-python-behaviour)
 3. [What is pytest fixture scope?](#what-is-pytest-fixture-scope)
 4. [Some common alembic commands](#some-common-alembic-commands)
+5. [When really is the primary key generated in sqlalchemy or sqlmodel](#when-really-is-the-primary-key-generated-in-sqlalchemy-or-sqlmodel)
 
 ### Some important python command
 
@@ -62,3 +63,37 @@ And yes, there are some built-in fixtures in pytest, such as `tmpdir`, `tmp_path
 - `alembic current` -> Current database version
 - `alembic history --verbose` -> listing all migration scripts
 - `alembic check` a quick way to see if the models and database are of of sync
+
+### When really is the primary key generated in sqlalchemy or sqlmodel
+
+Let's say we have a model
+
+```python
+from sqlmodel import SQLModel, Field
+from uuid import uuid4, UUID
+from typing import Annotated
+
+class User(SQLModel, table=True):
+    id: Annotated[UUID|None, Field(default_factory=uuid4, primary_key=True)]
+    name: str
+```
+
+We are particularly interested in the `id` generation process.
+First thing, if every user need to have an `id` as a primary key why are we allowing None as an input.
+
+Well to help pydantic validation. As during creation we will not provide the id, but we don't want to raise validation error by pydantic as well that's why.
+
+Here, we have exactly 3 ways to create an user instance,
+
+1. `user1 = User(id=uuid4(), name="abir")`
+2. `user2 = User(name="abir")`
+3. `user3 = User(id=None, name="abir")`
+
+You can be assured that all of these will work and create a valid user.
+But the real question comes what really happens when a `session` sees these cases.
+
+1. For case 1, it get's the user id, so no fuss it tries insert operation on it and the left handled by db
+2. For case 2, `During instanciation` of the sqlmodel class, calls the default factory and generates a uuid. So for the session it's same as case 1.
+3. Case 3, is somewhat interesting. Session get's a `None` for primary key. after everything is done, when `session.flush()` method is called just before the commit. It looks for if any way to generate. The session finds a python side default caller, it calls that function and assigns the value to id of the instance inplace. Thus the commit generate a insert query and then rest handled by the db.
+
+So to remeber that, if we explicitly pass None for `id`, it's not generate untill `flush` method is called either manually inside code or by the session handler before commit call. And this is how `flush` comes handy to know where it call it, on basis of business requirement.
